@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Óticas Fascinantes: atendimento visual cuidadoso, lentes de precisão, armações selecionadas, marcas parceiras e conteúdo para cuidar melhor da sua visão."
+    />
+    <title>Óticas Fascinantes</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2302306e'/%3E%3Ccircle cx='23' cy='34' r='12' fill='none' stroke='%23ffffff' stroke-width='5'/%3E%3Ccircle cx='41' cy='34' r='12' fill='none' stroke='%238bd7ff' stroke-width='5'/%3E%3Cpath d='M35 34h-6' stroke='%23d7f0ff' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  </head>
+  <body>
+    <header class="site-header" id="topo">
+      <a class="brand" href="#topo" aria-label="Óticas Fascinantes">
+        <span class="brand-mark" aria-hidden="true">OF</span>
+        <span>Óticas Fascinantes</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#cuidado">Cuidado visual</a>
+        <a href="#marcas">Marcas</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#blog">Blog</a>
+        <a class="nav-cta" href="#contato">Agendar</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <span class="eyebrow">Atendimento óptico com precisão e presença</span>
+          <h1 id="hero-title">Óticas Fascinantes</h1>
+          <p>
+            Lentes, armações e acompanhamento visual para quem quer enxergar melhor,
+            escolher com segurança e sair com uma solução que combina com o rosto, a rotina e o estilo.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#catalogo">
+              <i data-lucide="glasses"></i>
+              Ver catálogo
+            </a>
+            <a class="button secondary" href="#cuidado">
+              <i data-lucide="eye"></i>
+              Conhecer cuidados
+            </a>
+          </div>
+          <dl class="hero-metrics" aria-label="Diferenciais">
+            <div>
+              <dt>curadoria</dt>
+              <dd>armações para cada rosto</dd>
+            </div>
+            <div>
+              <dt>precisão</dt>
+              <dd>lentes para cada rotina</dd>
+            </div>
+            <div>
+              <dt>vínculo</dt>
+              <dd>conteúdo e pós-atendimento</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="hero-visual" aria-label="Animação 3D de óculos girando">
+          <canvas id="glasses-canvas"></canvas>
+          <div class="visual-caption">
+            <span>Arraste o mouse ou role a página</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section care-band" id="cuidado" aria-labelledby="care-title">
+        <div class="section-heading">
+          <span class="eyebrow">Como cuidamos do cliente</span>
+          <h2 id="care-title">A escolha dos óculos começa antes da vitrine.</h2>
+        </div>
+        <div class="care-grid">
+          <article>
+            <i data-lucide="scan-face"></i>
+            <h3>Análise de rosto e uso</h3>
+            <p>Entendemos formato, medidas, prescrição e rotina para indicar armações confortáveis e lentes coerentes.</p>
+          </article>
+          <article>
+            <i data-lucide="sparkles"></i>
+            <h3>Tratamentos de lente</h3>
+            <p>Antirreflexo, proteção UV, filtros para telas, fotossensíveis e soluções para dirigir, estudar ou trabalhar.</p>
+          </article>
+          <article>
+            <i data-lucide="shield-check"></i>
+            <h3>Acompanhamento</h3>
+            <p>Ajustes, limpeza, orientação de uso e relacionamento contínuo para manter conforto e qualidade visual.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split-section">
+        <div class="story-panel">
+          <span class="eyebrow">O que fazemos</span>
+          <h2>Unimos saúde visual, estética e atendimento humano.</h2>
+          <p>
+            A Óticas Fascinantes atende quem precisa renovar o grau, encontrar uma armação marcante,
+            proteger os olhos no dia a dia ou entender melhor qual lente faz sentido para sua rotina.
+          </p>
+        </div>
+        <div class="process-list" aria-label="Etapas do atendimento">
+          <div>
+            <span>01</span>
+            <p>Recebemos a receita, ouvimos as necessidades e conferimos medidas importantes.</p>
+          </div>
+          <div>
+            <span>02</span>
+            <p>Apresentamos opções de lentes, tratamentos e armações com comparação clara.</p>
+          </div>
+          <div>
+            <span>03</span>
+            <p>Finalizamos ajustes, orientamos cuidados e mantemos contato para dúvidas futuras.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section brand-section" id="marcas" aria-labelledby="brands-title">
+        <div class="section-heading compact">
+          <span class="eyebrow">Com o que trabalhamos</span>
+          <h2 id="brands-title">Marcas parceiras e linhas selecionadas.</h2>
+          <p>Espaço preparado para destacar as marcas reais da loja e organizar linhas por perfil de cliente.</p>
+        </div>
+        <div class="brand-marquee" aria-label="Marcas parceiras sugeridas">
+          <span>Ray-Ban</span>
+          <span>Oakley</span>
+          <span>Vogue</span>
+          <span>Hoya</span>
+          <span>ZEISS</span>
+          <span>Essilor</span>
+          <span>Mormaii</span>
+          <span>Ana Hickmann</span>
+        </div>
+      </section>
+
+      <section class="section catalog-section" id="catalogo" aria-labelledby="catalog-title">
+        <div class="section-heading">
+          <span class="eyebrow">Catálogo de produtos</span>
+          <h2 id="catalog-title">Escolha por necessidade, estilo ou momento de uso.</h2>
+        </div>
+        <div class="filter-bar" role="group" aria-label="Filtrar catálogo">
+          <button class="filter-button active" type="button" data-filter="all">Todos</button>
+          <button class="filter-button" type="button" data-filter="grau">Grau</button>
+          <button class="filter-button" type="button" data-filter="solar">Solar</button>
+          <button class="filter-button" type="button" data-filter="lentes">Lentes</button>
+        </div>
+        <div class="catalog-grid">
+          <article class="product-card" data-category="grau">
+            <img class="product-art" src="./assets/catalogo-grau.jpg" alt="Armação de grau fina em estúdio azul e branco" />
+            <span>Armações de grau</span>
+            <h3>Clássicos leves</h3>
+            <p>Modelos discretos para trabalho, estudo e uso prolongado.</p>
+          </article>
+          <article class="product-card" data-category="solar">
+            <img class="product-art" src="./assets/catalogo-solar.jpg" alt="Óculos solar com lentes azuis em estúdio clínico" />
+            <span>Óculos solares</span>
+            <h3>Proteção com presença</h3>
+            <p>Lentes com proteção UV e formatos para diferentes estilos.</p>
+          </article>
+          <article class="product-card" data-category="lentes">
+            <img class="product-art" src="./assets/catalogo-lentes.jpg" alt="Lentes oftálmicas com tratamento antirreflexo" />
+            <span>Lentes oftálmicas</span>
+            <h3>Alta definição</h3>
+            <p>Tratamentos para telas, direção, leitura e exposição ao sol.</p>
+          </article>
+          <article class="product-card" data-category="grau">
+            <img class="product-art" src="./assets/catalogo-design.jpg" alt="Armação azul translúcida de design marcante" />
+            <span>Design autoral</span>
+            <h3>Armações marcantes</h3>
+            <p>Cores, acetatos e geometrias para quem quer destacar o olhar.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section blog-section" id="blog" aria-labelledby="blog-title">
+        <div class="blog-copy">
+          <span class="eyebrow">Relacionamento e valor</span>
+          <h2 id="blog-title">Um blog para educar, orientar e manter o cliente por perto.</h2>
+          <p>
+            Conteúdos sobre sinais de troca de óculos, cuidados com lentes, estilos de armação,
+            prevenção visual e novidades ajudam o cliente a voltar mesmo antes de precisar comprar.
+          </p>
+          <a class="button primary" href="#" aria-label="Acessar blog da Óticas Fascinantes">
+            <i data-lucide="newspaper"></i>
+            Acessar blog
+          </a>
+        </div>
+        <div class="article-stack" aria-label="Sugestões de artigos">
+          <article>
+            <span>Guia rápido</span>
+            <h3>Como saber se está na hora de trocar as lentes?</h3>
+          </article>
+          <article>
+            <span>Cuidado diário</span>
+            <h3>O jeito certo de limpar seus óculos sem riscar.</h3>
+          </article>
+          <article>
+            <span>Estilo</span>
+            <h3>Armações que valorizam cada formato de rosto.</h3>
+          </article>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contato" aria-labelledby="contact-title">
+        <div>
+          <span class="eyebrow">Fale com a loja</span>
+          <h2 id="contact-title">Redes sociais, atendimento e relacionamento em um só lugar.</h2>
+        </div>
+        <div class="contact-actions">
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noreferrer">
+            <i data-lucide="message-circle"></i>
+            WhatsApp
+          </a>
+          <a href="https://instagram.com/" target="_blank" rel="noreferrer">
+            <i data-lucide="instagram"></i>
+            Instagram
+          </a>
+          <a href="https://facebook.com/" target="_blank" rel="noreferrer">
+            <i data-lucide="facebook"></i>
+            Facebook
+          </a>
+          <a href="https://tiktok.com/" target="_blank" rel="noreferrer">
+            <i data-lucide="music-2"></i>
+            TikTok
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Óticas Fascinantes</p>
+      <a href="#topo">Voltar ao topo</a>
+    </footer>
+
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

@@ -32,3 +32,22 @@ filterButtons.forEach((button) => {
     });
   });
 });
+
+const leadForm = document.querySelector("#lead-form");
+const leadStatus = document.querySelector("#lead-status");
+
+leadForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(leadForm);
+  const lead = Object.fromEntries(formData.entries());
+  lead.createdAt = new Date().toISOString();
+  lead.source = "landing_page_pre_atendimento";
+
+  const storedLeads = JSON.parse(localStorage.getItem("oticasFascinantesLeads") || "[]");
+  storedLeads.push(lead);
+  localStorage.setItem("oticasFascinantesLeads", JSON.stringify(storedLeads));
+
+  leadStatus.textContent = "Recebemos suas informações. Em breve a equipe te chama no WhatsApp para orientar com calma.";
+  leadForm.reset();
+});

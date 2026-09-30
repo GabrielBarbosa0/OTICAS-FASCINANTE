@@ -44,9 +44,9 @@ leadForm?.addEventListener("submit", (event) => {
   lead.createdAt = new Date().toISOString();
   lead.source = "landing_page_pre_atendimento";
 
-  const storedLeads = JSON.parse(localStorage.getItem("oticasFascinantesLeads") || "[]");
+  const storedLeads = JSON.parse(localStorage.getItem("oticasFascinanteLeads") || "[]");
   storedLeads.push(lead);
-  localStorage.setItem("oticasFascinantesLeads", JSON.stringify(storedLeads));
+  localStorage.setItem("oticasFascinanteLeads", JSON.stringify(storedLeads));
 
   leadStatus.textContent = "Recebemos suas informações. Em breve a equipe te chama no WhatsApp para orientar com calma.";
   leadForm.reset();

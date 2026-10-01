@@ -91,6 +91,7 @@ const quizSteps = [
     title: "Quais formatos chamam sua atenção?",
     helper: "Escolha quantos quiser. Se preferir, a gente vê isso junto no atendimento.",
     layout: "compact",
+    carousel: true,
     multiple: true,
     options: [
       {
@@ -136,9 +137,9 @@ const quizSteps = [
       { label: "Coloridas", value: "coloridas", swatch: "linear-gradient(135deg, #0ea5e9, #22c55e 45%, #ef4444)" },
       { label: "Neutras", value: "neutras", swatch: "linear-gradient(135deg, #3f3f46, #d4d4d8)" },
       { label: "Preto", value: "preto", swatch: "#050505" },
-      { label: "Tartaruga", value: "tartaruga", swatch: "radial-gradient(circle at 35% 35%, #e2a85f, #593012 45%, #1f130b)" },
+      { label: "Marrom", value: "marrom", swatch: "linear-gradient(135deg, #9a5c2e, #4a2a18)" },
       { label: "Duas cores", value: "duas cores", swatch: "linear-gradient(180deg, #111827 0 48%, #f8fafc 50%)" },
-      { label: "Cristal", value: "cristal", swatch: "linear-gradient(135deg, #ffffff, #e0f2fe)" },
+      { label: "Azul", value: "azul", swatch: "linear-gradient(135deg, #38bdf8, #02306e)" },
       { label: "Dourado", value: "dourado", swatch: "linear-gradient(135deg, #facc15, #b7791f)" },
       { label: "Prata", value: "prata", swatch: "linear-gradient(135deg, #f8fafc, #9ca3af)" }
     ],
@@ -149,6 +150,7 @@ const quizSteps = [
     title: "Qual material você prefere?",
     helper: "O material muda presença, peso e sensação no rosto.",
     layout: "image",
+    columns: 3,
     options: [
       {
         label: "Acetato",
@@ -285,10 +287,17 @@ const renderOptionMedia = (step, option) => {
 };
 
 const renderOptions = (step) => {
-  const layoutClass = step.layout === "compact" ? " is-compact" : step.layout === "swatch" ? " is-swatch" : "";
+  const layoutClass = [
+    step.layout === "compact" ? "is-compact" : "",
+    step.layout === "swatch" ? "is-swatch" : "",
+    step.carousel ? "is-carousel" : "",
+    step.columns === 3 ? "is-three-up" : ""
+  ]
+    .filter(Boolean)
+    .join(" ");
 
-  return `
-    <div class="quiz-options${layoutClass}" role="${step.multiple ? "group" : "radiogroup"}" aria-label="${step.title}">
+  const optionsMarkup = `
+    <div class="quiz-options${layoutClass ? ` ${layoutClass}` : ""}" role="${step.multiple ? "group" : "radiogroup"}" aria-label="${step.title}">
       ${step.options
         .map(
           (option) => `
@@ -306,6 +315,22 @@ const renderOptions = (step) => {
         .join("")}
     </div>
   `;
+
+  if (!step.carousel) {
+    return optionsMarkup;
+  }
+
+  return `
+    <div class="quiz-carousel">
+      <button class="quiz-carousel-button" type="button" data-carousel-prev aria-label="Ver formatos anteriores">
+        <i data-lucide="chevron-left"></i>
+      </button>
+      ${optionsMarkup}
+      <button class="quiz-carousel-button" type="button" data-carousel-next aria-label="Ver próximos formatos">
+        <i data-lucide="chevron-right"></i>
+      </button>
+    </div>
+  `;
 };
 
 const renderQuiz = () => {
@@ -319,7 +344,7 @@ const renderQuiz = () => {
   const progress = Math.round((current / total) * 100);
 
   quizRoot.innerHTML = `
-    <div class="quiz-pane">
+    <div class="quiz-pane${step.carousel ? " is-carousel-step" : ""}">
       <div class="quiz-topbar">
         <p class="quiz-progress-text">${current} de ${total}</p>
         <div class="quiz-progress" aria-hidden="true"><span style="width: ${progress}%"></span></div>
@@ -397,6 +422,17 @@ quizRoot?.addEventListener("click", (event) => {
   const skipButton = event.target.closest("[data-quiz-skip]");
   const nextButton = event.target.closest("[data-quiz-next]");
   const restartButton = event.target.closest("[data-quiz-restart]");
+  const carouselPrev = event.target.closest("[data-carousel-prev]");
+  const carouselNext = event.target.closest("[data-carousel-next]");
+
+  if (carouselPrev || carouselNext) {
+    const carousel = quizRoot.querySelector(".quiz-options.is-carousel");
+    if (carousel) {
+      const direction = carouselNext ? 1 : -1;
+      carousel.scrollBy({ left: direction * carousel.clientWidth, behavior: "smooth" });
+    }
+    return;
+  }
 
   if (optionButton) {
     const step = quizSteps[quizState.step];

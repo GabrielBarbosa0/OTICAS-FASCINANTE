@@ -385,14 +385,27 @@ const renderResult = () => {
 
   quizRoot.innerHTML = `
     <div class="quiz-result">
-      <div class="quiz-question">
-        <h3>Pronto, montamos seu resumo.</h3>
-        <p>Agora é só enviar para a Óticas Fascinante e continuar pelo WhatsApp com uma orientação mais certeira.</p>
+      <div class="quiz-result-header">
+        <span class="quiz-result-icon" aria-hidden="true">
+          <i data-lucide="check"></i>
+        </span>
+        <p class="quiz-progress-text">7 de 7</p>
+        <h3>Seu resumo está pronto.</h3>
+        <p>Agora a Óticas Fascinante já recebe suas preferências com contexto para orientar lente, armação e encaixe com mais precisão.</p>
       </div>
-      <div class="quiz-summary" aria-label="Resumo das preferências escolhidas">
-        ${summary}
+
+      <div class="quiz-result-body">
+        <div class="quiz-next-step">
+          <span>Próximo passo</span>
+          <strong>Enviar pelo WhatsApp</strong>
+          <p>A mensagem já vai preenchida com suas escolhas, então você não precisa explicar tudo de novo no atendimento.</p>
+        </div>
+        <div class="quiz-summary" aria-label="Resumo das preferências escolhidas">
+          ${summary}
+        </div>
       </div>
-      <div class="quiz-controls">
+
+      <div class="quiz-controls quiz-result-actions">
         <button class="quiz-control" type="button" data-quiz-restart>Refazer escolhas</button>
         <a class="button primary quiz-whatsapp" href="${whatsappUrl}" target="_blank" rel="noreferrer" data-quiz-whatsapp>
           <i data-lucide="message-circle"></i>

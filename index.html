@@ -13,7 +13,7 @@
       type="image/svg+xml"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2302306e'/%3E%3Ccircle cx='23' cy='34' r='12' fill='none' stroke='%23ffffff' stroke-width='5'/%3E%3Ccircle cx='41' cy='34' r='12' fill='none' stroke='%238bd7ff' stroke-width='5'/%3E%3Cpath d='M35 34h-6' stroke='%23d7f0ff' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E"
     />
-    <link rel="stylesheet" href="./styles.css?v=20261001-blog-links" />
+    <link rel="stylesheet" href="./styles.css?v=20261001-quiz-whatsapp" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   </head>
   <body>
@@ -273,64 +273,22 @@
         <div class="lead-copy">
           <h2 id="lead-title">Vamos entender o que combina com você.</h2>
           <p>
-            Conte sua necessidade visual, sua rotina e o estilo que você procura. A partir disso,
-            a Óticas Fascinante te chama no WhatsApp com uma orientação mais certeira.
+            Responda algumas escolhas rápidas sobre estilo, uso e encaixe. No final, a gente monta
+            uma mensagem pronta para você chamar a Óticas Fascinante no WhatsApp com mais contexto.
           </p>
-          <div class="lead-highlights" aria-label="O que acontece depois do envio">
-            <span>Entendemos sua rotina</span>
-            <span>Indicamos opções com mais sentido</span>
-            <span>Você conversa direto pelo WhatsApp</span>
+          <div class="lead-highlights" aria-label="Como funciona o quiz">
+            <span>Escolhas simples, sem cadastro</span>
+            <span>Preferências reunidas em um resumo</span>
+            <span>Mensagem personalizada no WhatsApp</span>
           </div>
         </div>
 
-        <form class="lead-form" id="lead-form" data-crm-form="pre_atendimento_oticas" aria-label="Formulário para entender necessidades visuais">
-          <div class="field-group two-columns">
-            <label>
-              Nome completo
-              <input type="text" name="nome" autocomplete="name" data-crm-field="name" placeholder="Seu nome" required />
-            </label>
-            <label>
-              WhatsApp
-              <input type="tel" name="whatsapp" autocomplete="tel" data-crm-field="phone" placeholder="(81) 99999-9999" required />
-            </label>
+        <div class="quiz-card" id="style-quiz" data-crm-module="quiz_preferencias" aria-label="Quiz de preferências para óculos">
+          <div class="quiz-loading">
+            <i data-lucide="sparkles"></i>
+            Carregando quiz...
           </div>
-
-          <div class="field-group two-columns">
-            <label>
-              O que você está buscando?
-              <select name="interesse" data-crm-field="interest" required>
-                <option value="">Selecione uma opção</option>
-                <option value="oculos_grau">Óculos de grau</option>
-                <option value="oculos_solar">Óculos solar</option>
-                <option value="lentes">Lentes oftálmicas</option>
-                <option value="ajuste_limpeza">Ajuste ou limpeza</option>
-                <option value="duvida">Ainda estou em dúvida</option>
-              </select>
-            </label>
-            <label>
-              Já tem receita?
-              <select name="receita" data-crm-field="has_prescription" required>
-                <option value="">Selecione</option>
-                <option value="sim">Sim, já tenho receita</option>
-                <option value="nao">Ainda não tenho</option>
-                <option value="vou_atualizar">Quero atualizar meu grau</option>
-              </select>
-            </label>
-          </div>
-
-          <input type="hidden" name="canal" value="whatsapp" data-crm-field="preferred_channel" />
-
-          <label>
-            Me conta um pouco da sua rotina
-            <textarea name="observacao" data-crm-field="notes" rows="4" placeholder="Ex.: trabalho no computador, dirijo à noite, quero uma armação leve, preciso proteger mais os olhos..."></textarea>
-          </label>
-
-          <button class="button lead-submit" type="submit">
-            <i data-lucide="message-circle"></i>
-            Receber orientação
-          </button>
-          <p class="lead-status" id="lead-status" role="status" aria-live="polite"></p>
-        </form>
+        </div>
       </section>
 
       <section class="section blog-section" id="blog" aria-labelledby="blog-title">
@@ -447,6 +405,6 @@
       </div>
     </footer>
 
-    <script type="module" src="./script.js?v=20260930-hero-clean"></script>
+    <script type="module" src="./script.js?v=20261001-quiz-whatsapp"></script>
   </body>
 </html>

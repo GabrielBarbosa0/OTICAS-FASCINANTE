@@ -21,6 +21,51 @@ document.querySelectorAll(".nav-links a").forEach((link) => {
   });
 });
 
+const setupScrollReveals = () => {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const revealGroups = [
+    [".hero-copy > *", "reveal--scale"],
+    [".section-heading, .story-panel, .quiz-section-heading, .blog-copy, .contact-copy"],
+    [".people-card, .care-grid article, .process-list > div, .brand-card, .product-card, .article-stack article, .contact-actions > a"],
+    [".quiz-card", "reveal--scale"],
+    [".footer > *"]
+  ];
+
+  const revealItems = revealGroups.flatMap(([selector, modifier]) =>
+    [...document.querySelectorAll(selector)].map((element) => ({ element, modifier }))
+  );
+
+  if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+    return;
+  }
+
+  document.documentElement.classList.add("motion-ready");
+
+  revealItems.forEach(({ element, modifier }) => {
+    element.classList.add("reveal");
+    if (modifier) {
+      element.classList.add(modifier);
+    }
+
+    const siblings = element.parentElement?.querySelectorAll(":scope > .reveal") || [];
+    const position = [...siblings].indexOf(element);
+    element.style.setProperty("--reveal-delay", `${Math.max(position, 0) * 70}ms`);
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle("is-visible", entry.isIntersecting);
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+  );
+
+  revealItems.forEach(({ element }) => observer.observe(element));
+};
+
+setupScrollReveals();
+
 const filterButtons = document.querySelectorAll(".filter-button");
 const productCards = document.querySelectorAll(".product-card");
 

@@ -6,6 +6,12 @@ Protótipo de landing page para a Óticas Fascinante, criado com HTML, CSS e Jav
 
 A landing page foi pensada para transmitir uma ideia de saúde, confiança e atendimento próximo, usando uma identidade visual baseada em azul escuro, branco e tons claros. O projeto prioriza uma experiência responsiva, com seções em estilo Full HD no desktop e ajustes específicos para mobile.
 
+## Estado Atual
+
+Em 02/10/2026, o projeto está em uma versão estática funcional, com fluxo de pré-atendimento por quiz visual. O visitante escolhe preferências de estilo, formato, cor, material, encaixe e situação da receita; ao final, o site gera um resumo e abre o WhatsApp com a mensagem personalizada.
+
+Também há um documento técnico em `docs/TDD.md` descrevendo arquitetura, fluxo do quiz, integrações, validações recomendadas e próximos passos.
+
 ## Funcionalidades
 
 - Hero section limpa com marca em destaque, CTA de catálogo e CTA de cuidados.
@@ -15,7 +21,8 @@ A landing page foi pensada para transmitir uma ideia de saúde, confiança e ate
 - Etapas de atendimento da receita ao óculos pronto.
 - Seção de marcas parceiras com grid responsivo.
 - Catálogo de produtos com cards por necessidade/uso.
-- Formulário de orientação para captar informações do cliente.
+- Quiz visual de pré-atendimento para entender preferências do cliente.
+- Tela final com resumo das respostas e CTA para WhatsApp.
 - Blog com sugestões de conteúdos educativos.
 - Redes sociais com WhatsApp, Instagram e Facebook.
 - Rodapé com crédito discreto para o GitHub do desenvolvedor.
@@ -40,6 +47,8 @@ OTICAS-FASCINANTE/
 │   ├── people/          # Imagens principais de pessoas usando óculos
 │   ├── pixabay/         # Imagens auxiliares de banco
 │   └── warby parker/    # Referências visuais e assets de inspiração
+├── docs/
+│   └── TDD.md           # Documento técnico do projeto
 ├── index.html
 ├── styles.css
 ├── script.js
@@ -69,19 +78,19 @@ http://localhost:4173
 - **Atendimento:** etapas do processo até o óculos pronto.
 - **Marcas:** logos das marcas parceiras em destaque.
 - **Catálogo:** categorias de produtos e estilos.
-- **Orientação:** formulário simples para entender a necessidade do cliente.
+- **Pré-atendimento:** quiz visual para entender preferências e gerar mensagem de WhatsApp.
 - **Blog:** ideias de artigos para relacionamento com clientes.
 - **Contato:** links oficiais de WhatsApp, Instagram e Facebook.
 
-## Formulário e CRM
+## Quiz e Pré-atendimento
 
-O formulário da seção "Vamos entender o que combina com você" é um protótipo para futura integração com CRM. Hoje, ao enviar, os dados são salvos no `localStorage` do navegador com a chave:
+O quiz da seção "Vamos entender o que combina com você" é um protótipo para futura integração com CRM. Hoje, ao finalizar o fluxo, os dados são salvos no `localStorage` do navegador com a chave:
 
 ```text
-oticasFascinanteLeads
+oticasFascinanteQuizLeads
 ```
 
-Os campos usam atributos `data-crm-field`, facilitando uma futura integração com backend, planilha, CRM ou ferramenta de automação.
+Cada registro guarda a data de criação, a origem do lead, as respostas escolhidas e a mensagem gerada para WhatsApp. Essa persistência é apenas local e serve como base para uma futura integração com backend, planilha, CRM ou ferramenta de automação.
 
 ## Links de Atendimento
 

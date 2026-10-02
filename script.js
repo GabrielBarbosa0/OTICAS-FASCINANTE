@@ -502,7 +502,13 @@ quizRoot?.addEventListener("click", (event) => {
         ? currentValues.filter((item) => item !== value)
         : [...currentValues, value];
       quizState.answers[step.id] = nextValues;
-      renderQuiz();
+      const isSelected = nextValues.includes(value);
+      optionButton.classList.toggle("is-selected", isSelected);
+      optionButton.setAttribute("aria-pressed", String(isSelected));
+      const nextStepButton = quizRoot.querySelector("[data-quiz-next]");
+      if (nextStepButton) {
+        nextStepButton.disabled = !hasAnswer(step);
+      }
       return;
     }
 
